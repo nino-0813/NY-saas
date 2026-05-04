@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import { diagnose, type CategoryScore } from "@/lib/scoring";
@@ -120,16 +121,60 @@ export default async function HearingResultPage({
 
         {/* CTA */}
         <section className="mt-14 rounded-xl bg-emerald-600 p-8 text-white">
-          <h2 className="text-lg font-semibold">
-            この診断をもとに、{s.company_name} 様専用の改善プランをお作りします
-          </h2>
-          <p className="mt-2 text-sm leading-relaxed text-emerald-50">
-            診断結果はすでに NY33 にも届いています。
-            数日以内に担当よりご連絡を差し上げます。お急ぎの場合は下記までご連絡ください。
-          </p>
-          <p className="mt-4 text-sm text-emerald-50">
-            ご相談：NY33 担当まで（このページの URL を共有していただけるとスムーズです）
-          </p>
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
+            <div className="min-w-0 flex-1">
+              <h2 className="text-lg font-semibold">
+                この診断をもとに、{s.company_name} 様専用の改善プランをお作りします
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-emerald-50">
+                診断結果はすでに NY33 にも届いています。
+                数日以内に担当よりご連絡を差し上げます。お急ぎの場合は下記までご連絡ください。
+              </p>
+              <p className="mt-4 text-sm text-emerald-50">
+                ご相談：NY33 担当まで（このページの URL を共有していただけるとスムーズです）
+              </p>
+              <div className="mt-5 space-y-2 border-t border-emerald-400/40 pt-5 text-sm">
+                <p>
+                  <span className="font-medium text-white">会社HP</span>
+                  <span className="mx-2 text-emerald-200">/</span>
+                  <a
+                    href="https://www.ny33.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-all text-emerald-50 underline decoration-emerald-300/80 underline-offset-2 hover:text-white"
+                  >
+                    https://www.ny33.jp/
+                  </a>
+                </p>
+                <p>
+                  <span className="font-medium text-white">公式LINE</span>
+                  <span className="mx-2 text-emerald-200">/</span>
+                  <a
+                    href="https://lin.ee/nD770GC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-all text-emerald-50 underline decoration-emerald-300/80 underline-offset-2 hover:text-white"
+                  >
+                    https://lin.ee/nD770GC
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto flex shrink-0 flex-col items-center sm:mx-0">
+              <div className="relative h-40 w-40 overflow-hidden rounded-lg bg-white p-2 shadow-sm">
+                <Image
+                  src="/S_gainfriends_2dbarcodes_GW.png"
+                  alt="LINE公式アカウントを追加するQRコード"
+                  fill
+                  sizes="160px"
+                  className="object-contain p-1"
+                />
+              </div>
+              <p className="mt-2 max-w-[11rem] text-center text-xs leading-snug text-emerald-100">
+                スマホのLINEで読み取り、友だち追加
+              </p>
+            </div>
+          </div>
         </section>
 
         <footer className="mt-12 border-t border-slate-200 pt-6 text-center text-xs text-slate-400">

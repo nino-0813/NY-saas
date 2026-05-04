@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import { formatMonthLabel } from "@/lib/month";
@@ -63,7 +64,7 @@ export default async function PublicClientReportPage({
         {!latest ? (
           <EmptyState />
         ) : (
-          <ReportBody report={latest} client={c} />
+          <ReportBody report={latest} />
         )}
 
         {past.length > 0 && (
@@ -81,6 +82,62 @@ export default async function PublicClientReportPage({
             </p>
           </section>
         )}
+
+        <section className="mt-16 rounded-lg border border-slate-200 bg-slate-50/50 p-5">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+            <div className="min-w-0 flex-1">
+              <SectionLabel>ご質問・ご相談</SectionLabel>
+              <p className="mt-2 text-sm text-slate-600">
+                <span className="font-medium text-slate-800">
+                  NY33 担当（二宮担当）
+                </span>
+              </p>
+              <p className="mt-2 text-sm text-slate-600">
+                会社HP・公式LINEからご確認ください。
+              </p>
+              <div className="mt-4 space-y-2 text-sm">
+                <p>
+                  <span className="font-medium text-slate-800">会社HP</span>
+                  <span className="mx-2 text-slate-400">/</span>
+                  <a
+                    href="https://www.ny33.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-all text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                  >
+                    https://www.ny33.jp/
+                  </a>
+                </p>
+                <p>
+                  <span className="font-medium text-slate-800">公式LINE</span>
+                  <span className="mx-2 text-slate-400">/</span>
+                  <a
+                    href="https://lin.ee/nD770GC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-all text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                  >
+                    https://lin.ee/nD770GC
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto flex shrink-0 flex-col items-center sm:mx-0">
+              <div className="relative h-40 w-40 overflow-hidden rounded-lg border border-slate-200 bg-white p-2 shadow-sm">
+                <Image
+                  src="/S_gainfriends_2dbarcodes_GW.png"
+                  alt="LINE公式アカウントを追加するQRコード"
+                  fill
+                  sizes="160px"
+                  className="object-contain p-1"
+                />
+              </div>
+              <p className="mt-2 max-w-[11rem] text-center text-xs leading-snug text-slate-500">
+                スマホのLINEで読み取り、友だち追加
+              </p>
+            </div>
+          </div>
+        </section>
 
         <footer className="mt-16 border-t border-slate-200 pt-6 text-center text-xs text-slate-400">
           このレポートは NY33 Growth Board により生成されています。
@@ -103,7 +160,7 @@ function EmptyState() {
   );
 }
 
-function ReportBody({ report, client }: { report: Report; client: Client }) {
+function ReportBody({ report }: { report: Report }) {
   const kpi = report.kpi_snapshot;
   const improvements = report.improvements_snapshot ?? [];
   const nextActions = report.next_actions_snapshot ?? [];
@@ -212,15 +269,6 @@ function ReportBody({ report, client }: { report: Report; client: Client }) {
         {nextActions.length === 0 && !report.next_focus && (
           <p className="mt-3 text-sm text-slate-400">（記載なし）</p>
         )}
-      </section>
-
-      {/* Contact (placeholder) */}
-      <section className="rounded-lg border border-slate-200 bg-slate-50/50 p-5">
-        <SectionLabel>ご質問・ご相談</SectionLabel>
-        <p className="mt-2 text-sm text-slate-600">
-          内容についてのご質問や次月の方針へのご要望は、
-          NY33 担当（{client.name}担当）までお気軽にお声がけください。
-        </p>
       </section>
     </div>
   );
