@@ -43,10 +43,10 @@ export function HearingForm() {
       <Section letter="A" title="会社情報">
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="会社名・サロン名" required>
-            <Input name="company_name" required placeholder="例：Hotel PG" />
+            <Input name="company_name" required placeholder="例：合同会社NY33" />
           </Field>
           <Field label="業種">
-            <Input name="industry" placeholder="例：宿泊・観光 / サロン / 飲食" />
+            <Input name="industry" placeholder="例：サービス業 / 小売 / 飲食 / 士業 など" />
           </Field>
           <Field label="ご担当者名">
             <Input name="contact_name" placeholder="例：山田 太郎" />
@@ -71,7 +71,7 @@ export function HearingForm() {
       <Section letter="B" title="商品とお客様">
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="メインの商品・サービス">
-            <Input name="main_product" placeholder="例：1泊朝食付き宿泊プラン" />
+            <Input name="main_product" placeholder="例：月額サブスク / カット＋カラー / 業務委託コンサル" />
           </Field>
           <Field label="客単価（目安）">
             <Select value={priceRange} onValueChange={(v) => setPriceRange(v ?? "")}>
@@ -92,7 +92,7 @@ export function HearingForm() {
               <Textarea
                 name="target_customer"
                 rows={2}
-                placeholder="例：30〜40代の県外からの観光客、サイクリスト"
+                placeholder="例：初めて来店する20〜40代、近隣の法人の担当者など"
               />
             </Field>
           </div>
